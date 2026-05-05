@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ABSA Login</title>
+
+<style>
+
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+
+    /* 🔥 BACKGROUND IMAGE ADDED */
+    background: url("homeimage.png") no-repeat center center/cover;
+    
+}
+
+/* OPTIONAL LIGHT OVERLAY */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.42);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* 🔥 NAVBAR ADDED */
+nav {
+    width: 80%;
+    margin: 20px auto;
+    background: #111;
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: #aaa;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+}
+
+.nav-links a:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+.active {
+    background: #0ea5e9;
+    color: white !important;
+}
+
+/* Center card */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+/* Card */
+.login-card {
+    background: white;
+    width: 420px;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0px 15px 40px rgba(0,0,0,0.1);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(25px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Subtitle */
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: gray;
+    transition: 0.3s;
+    font-size:13px;
+}
+
+.tab.active {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #f9fafb;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #2563eb;
+    box-shadow: 0 0 8px rgba(37,99,235,0.2);
+}
+
+/* Password box */
+.password-box {
+    position: relative;
+}
+
+.password-box span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+}
+
+/* Error */
+#errorMsg, #signupError {
+    color: #ef4444;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Hide */
+.hidden {
+    display: none;
+}
+
+/* Remember me */
+.remember-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    position: relative;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+    display: block;
+}
+
+.checkmark::after {
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Forgot link */
+.forgot-link {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    text-align:center;
+    margin-top:15px;
+    font-size:12px;
+    color:#9ca3af;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #22c55e;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.4s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    background: #ef4444;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+<nav>
+    <div class="logo">=</div>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="login.html" class="active">Login</a>
+        <a href="about.html">About</a>
+    </div>
+</nav>
+
+<div class="container">
+<div class="login-card">
+
+    <div class="title">🔐 Aspect-Based Sentiment Analysis System</div>
+    <div class="subtitle">Sign in or create account</div><BR>
+
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('login')">Sign in </div>
+        <div class="tab" onclick="showTab('signup')">Sign Up</div>
+    </div>
+
+    <!-- SIGN IN -->
+    <div id="login">
+        <input type="text" id="loginUser" placeholder="👤 Username">
+
+        <div class="password-box">
+            <input type="password" id="loginPass" placeholder="🔒 Password">
+            <span onclick="togglePassword('loginPass')">👁</span>
+        </div>
+
+        <div class="remember-container">
+            <label class="custom-checkbox">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+        </div>
+
+        <div id="errorMsg"></div>
+<br>
+        <button onclick="login()">Sign in</button>
+    </div>
+
+    <!-- SIGN UP -->
+    <div id="signup" class="hidden">
+        <input type="text" id="newUser" placeholder="👤 Create Username">
+        <input type="password" id="newPass" placeholder="🔒 Create Password">
+
+        <div id="signupError"></div>
+
+        <button onclick="signup()">Sign Up</button>
+    </div>
+
+    <div class="footer">
+        © ABSA System
+    </div>
+
+</div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script>
+/* ---------- SAVE & LOAD USERS ---------- */
+function loadUsers() {
+    return JSON.parse(localStorage.getItem("absa_users")) || {};
+}
+function saveUsers(users) {
+    localStorage.setItem("absa_users", JSON.stringify(users));
+}
+
+/* ---------- TOGGLE LOGIN/SIGNUP TABS ---------- */
+function showTab(tab) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("signup").classList.add("hidden");
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+
+    if (tab === "login") {
+        document.getElementById("login").classList.remove("hidden");
+        document.querySelectorAll(".tab")[0].classList.add("active");
+    } else {
+        document.getElementById("signup").classList.remove("hidden");
+        document.querySelectorAll(".tab")[1].classList.add("active");
+    }
+}
+
+/* ---------- SHOW/HIDE PASSWORD ---------- */
+function togglePassword(id) {
+    let input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+}
+
+/* ---------- TOAST MESSAGE ---------- */
+function showToast(message, type="success") {
+    let toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.className = "toast show";
+    
+    if (type === "error") toast.classList.add("error");
+
+    setTimeout(() => { toast.className = "toast"; }, 3000);
+}
+
+/* ---------- SIGN UP (Real Account Creation) ---------- */
+function signup() {
+    let user = document.getElementById("newUser").value.trim();
+    let pass = document.getElementById("newPass").value.trim();
+    let error = document.getElementById("signupError");
+    let users = loadUsers();
+
+    // Validation
+    if (!user || !pass) {
+        error.innerText = "Enter username and password";
+        showToast("Fill all fields", "error");
+        return;
+    }
+    if (user.length < 4) {
+        error.innerText = "Username must be at least 4 characters";
+        showToast("Weak username", "error");
+        return;
+    }
+    if (pass.length < 6) {
+        error.innerText = "Password must be at least 6 characters";
+        showToast("Weak password", "error");
+        return;
+    }
+    if (users[user]) {
+        error.innerText = "Username already exists";
+        showToast("Try a different username", "error");
+        return;
+    }
+
+    // Save user
+    users[user] = pass;
+    saveUsers(users);
+
+    error.innerText = "";
+    showToast("Account Created 🎉");
+}
+
+/* ---------- LOGIN (Correct Authentication) ---------- */
+function login() {
+    let user = document.getElementById("loginUser").value.trim();
+    let pass = document.getElementById("loginPass").value.trim();
+    let error = document.getElementById("errorMsg");
+    let users = loadUsers();
+
+    if (!user || !pass) {
+        error.innerText = "Enter username and password";
+        showToast("Fill all fields", "error");
+        return;
+    }
+
+    // Check account exists
+    if (!users[user]) {
+        error.innerText = "User does not exist";
+        showToast("Invalid username", "error");
+        return;
+    }
+
+    // Check password
+    if (users[user] !== pass) {
+        error.innerText = "Incorrect password";
+        showToast("Wrong password", "error");
+        return;
+    }
+
+    // SUCCESS
+    error.innerText = "";
+    showToast("Login Successful ✅");
+
+    setTimeout(() => {
+        window.location.href = "http://localhost:8501/?user=" + user;
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
