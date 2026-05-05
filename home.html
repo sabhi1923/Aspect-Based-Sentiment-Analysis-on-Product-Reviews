@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+
+    background: url("homeimage.png") no-repeat center center/cover;
+    overflow-x: hidden;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.42);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* NAVBAR */
+nav {
+    width: 80%;
+    margin: 20px auto;
+    background: #111;
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: #aaa;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+}
+
+.nav-links a:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* 🔥 TYPEWRITER (Welcome text) */
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid black;
+    white-space: nowrap;
+    animation: typing 3s steps(30, end);
+}
+
+/* 🔥 TOP-DOWN ANIMATION */
+.slide-down {
+    animation: slideDown 1s ease forwards;
+}
+
+.slide-delay {
+    animation-delay: 0.4s;
+}
+
+/* TEXT STYLES */
+.hero h1 {
+    font-size: 40px;
+    color: #000000;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero h2 {
+    color: #363535;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+/* KEYFRAMES */
+
+/* TYPEWRITER */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 280px }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* SLIDE DOWN */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<nav>
+    <div class="logo">=</div>
+    <div class="nav-links">
+        <a href="home.html" style="background:#0ea5e9;color:white;">Home</a>
+        <a href="login.html">Login</a>
+        <a href="about.html">About</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <!-- TYPEWRITER -->
+    <h2 class="typewriter">Welcome To Analyze Customer Opinions...</h2>
+
+    <!-- TOP-DOWN ANIMATION -->
+    <h1 class="slide-down">ASPECT BASED SENTIMENT ANALYSIS SYSTEM</h1>
+    <h1 class="slide-down slide-delay">ON PRODUCT REVIEWS</h1><br>
+    
+    <p><b><i> Start your journey by exploring customer reviews and uncover valuable insights <br>
+        that help in better decision-making and product improvement.</i></b></p>
+    <a href="login.html" class="btn">Get Started</a>
+</div>
+
+</body>
+</html>
