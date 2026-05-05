@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND IMAGE */
+.bg {
+    position: fixed;
+    width: 700%;
+    z-index: -1;
+}
+
+.bg img {
+    position: absolute;
+    width: 1280px;
+    height: 600px;
+    opacity: 0.50;
+}
+
+/* NAVBAR */
+nav {
+    width: 80%;
+    margin: 20px auto;
+    background: #111;
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: #aaa;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+}
+
+.nav-links a:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+.active {
+    background: #0ea5e9;
+    color: white !important;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1100px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* TITLE */
+.container h1 {
+    font-size: 42px;
+    font:Times New Roman;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+/* 💬 CHAT STYLE ABSTRACT */
+.abstract-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* CHAT BUBBLES */
+.abstract-card p {
+    max-width: 75%;
+    padding: 15px 18px;
+    border-radius: 18px;
+    line-height: 1.6;
+    font-size: 16px;
+    position: relative;
+    animation: fadeUp 0.6s ease;
+}
+
+/* LEFT */
+.abstract-card p:nth-child(odd) {
+    background: #e5e7eb;
+    color: #111;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+/* RIGHT */
+.abstract-card p:nth-child(even) {
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+/* TAIL */
+.abstract-card p:nth-child(odd)::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    bottom: 0;
+    border-right: 10px solid #e5e7eb;
+    border-top: 10px solid transparent;
+}
+
+.abstract-card p:nth-child(even)::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    bottom: 0;
+    border-left: 10px solid #2563eb;
+    border-top: 10px solid transparent;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* TEXT */
+.container p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* GRID */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 50px;
+}
+
+.card-grid .card:nth-child(1) { grid-column: 1 / 3; }
+.card-grid .card:nth-child(2) { grid-column: 3 / 5; }
+.card-grid .card:nth-child(3) { grid-column: 5 / 7; }
+.card-grid .card:nth-child(4) { grid-column: 2 / 4; }
+.card-grid .card:nth-child(5) { grid-column: 4 / 6; }
+
+/* CARDS */
+.card {
+    margin-top: 30px;
+    padding: 25px;
+    background: #0ea5e9;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* STEP SECTION */
+.work-section {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.step-card {
+    width: 260px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.step-card h3 {
+    color: #0ea5e9;
+    font-size: 28px;
+}
+
+.c1 { transform: rotate(-5deg); }
+.c2 { transform: rotate(0deg); }
+.c3 { transform: rotate(5deg); }
+
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <img src="aboutimage.jpeg">
+</div>
+
+<nav>
+    <div class="logo">=</div>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="about.html" class="active">About</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1><i>Project Details</i></h1>
+
+    <!-- 💬 CHAT STYLE ABSTRACT -->
+    <div class="abstract-card">
+        <p>With the rapid growth of e-commerce platforms, a massive volume of product reviews is generated daily, containing valuable insights into customer opinions and experiences.</p>
+        <p>Effectively analyzing this unstructured data has become crucial for businesses to understand customer preferences and enhance product quality.</p>
+        <p>However, traditional sentiment analysis methods primarily focus on identifying the overall sentiment of a review, which often fails to capture detailed opinions related to specific product features.</p>
+        <p>To address this limitation, the proposed system implements an <b>Aspect Based Sentiment Analysis on Product Reviews</b>, which enables a more fine-grained analysis of product features such as price, quality, performance, battery, display etc. </p>
+        <p>The system extracts the aspects from customer reviews and determines the sentiment associated with each aspect individually.</p>
+        <p>It adopts an adaptive approach for dual-mode analysis, performing <b>aspect-level sentiment analysis</b> when known aspects is identified in the review text and switches to <b>overall sentiment analysis</b> when such aspects are not identified, ensuring flexibility in handling different types of input data.</p>
+        <p>The system utilizes <b>Natural Language Processing (NLP) techniques</b> such as tokenization, stop-word removal and aspect normalization are used for text preprocessing and analysis. The system is implemented using Python and provides an interactive user interface for analysis.</p>
+        <p>The results are visualized using graphical representations such as bar charts and pie charts, offering clear and intuitive insights into customer opinions.</p>
+
+    </div>
+
+    <br><br><br>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>MODELS</h3>
+<p>
+                • Built using Streamlit <br>
+                • Uses Machine Learning (BERT) <br>
+                • Provides analytics dashboard for insights
+            </p>        </div>
+
+        <div class="card">
+            <h3>NLP TECHNIQUES USED</h3>
+            <p> • Tokenization <br>
+• Stop-word removal <br>
+• Stemming <br>
+• Aspect extraction </p>
+        </div>
+
+        <div class="card">
+            <h3>SENTIMENT CLASSIFICATION</h3>
+            <p>1. Positive <br> 
+            2. Neutral <br> 
+            3. Negative</p>
+        </div>
+
+        <div class="card">
+            <h3>OBJECTIVES </h3>
+            <p>
+               To develop a system that performs sentiment analysis on product reviews using advanced Natural Language Processing techniques.<BR><BR>
+To implement Aspect-Based Sentiment Analysis (ABSA) for identifying sentiments related to specific product features.
+            </p>
+        </div>
+
+        <div class="card">
+             <h3>SCOPE</h3>
+            <p>The system focuses on analyzing textual data from customer reviews to identify sentiments and opinions. <BR><BR>
+It supports both aspect-level analysis (when specific features are mentioned) and overall sentiment analysis (when aspects are not explicitly present). 
+</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="work-section">
+    <h1>How It Works</h1>
+    <p class="subtitle">Understand → Analyze → Deliver insights</p>
+
+    <div class="cards">
+        <div class="step-card c1">
+            <h3>01</h3>
+            <h2>Understand</h2>
+            <p> • Reads user review text<br>
+ • Cleans and processes the text<br>
+ • Identifies important words and features </p>
+        </div>
+
+        <div class="step-card c2">
+            <h3>02</h3>
+            <h2>Analyze</h2>
+           <p> • Extracts aspects (features)<br>
+ • Detects sentiment (positive/negative/neutral)<br>
+ • Links aspect with sentiment.</p>
+        </div>
+
+        <div class="step-card c3">
+            <h3>03</h3>
+            <h2>Deliver</h2>
+             <p> • Visualize insights in dashboard.<br>
+                • Displays final results clearly<br>
+ • Shows aspect-wise sentiment.<br>
+ • Helps in better decision making
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+function showOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+        const boxTop = card.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+            card.classList.add('show');
+        }
+    });
+}
+window.addEventListener('scroll', showOnScroll);
+showOnScroll();
+</script>
+
+</body>
+</html>
